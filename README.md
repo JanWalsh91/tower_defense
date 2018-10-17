@@ -18,3 +18,7 @@ Upgrade towers by clicking on them.
 Use the fire icon in case of an emergency to drop a bomb!
 
 <img src="https://github.com/JanWalsh91/tower_defense/blob/master/media/GIF%203.gif" alt="drawing" width="500"/>
+
+- [3D Golf Simulator](https://github.com/JanWalsh91/golf_simulator)
+- [Infiltration](https://github.com/JanWalsh91/inflitration)
+- [Blocks Puzzle](https://github.com/JanWalsh91/blocks_puzzle)
