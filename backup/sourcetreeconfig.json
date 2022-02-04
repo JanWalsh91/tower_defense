@@ -1,0 +1,37 @@
+{
+  "$id": "3",
+  "AutoRefresh": true,
+  "AutoRefreshRemotes": true,
+  "CommitTextLinks": null,
+  "DraftCommitMsg": "",
+  "IncomingSavedCount": 0,
+  "LastCheckedRemotes": "2022-02-04T23:42:01.6737683+03:00",
+  "LastUsedView": 0,
+  "LogBranchFilterIndex": 0,
+  "OutgoingSavedCount": 0,
+  "SidebarExpandedItems": [
+    "File Status",
+    "Branches",
+    "Branches",
+    "Branches/scene",
+    "Branches/scene/feature"
+  ],
+  "SidebarWidth": 210.0,
+  "SubtreeLinks": [],
+  "NeedsLargeFilesPull": false,
+  "RemoteProjectLinks": [
+    {
+      "$id": "4",
+      "BaseUrl": "https://github.com",
+      "Identifier": "JanWalsh91/tower_defense",
+      "RemoteName": "origin",
+      "Type": 0,
+      "Username": "ArdaDenizKara",
+      "CloneUrl": null,
+      "ProjectUrl": null,
+      "AccountId": "ArdaDenizKara@github.com",
+      "AvatarUrl": null,
+      "DisplayName": "origin: https://github.com"
+    }
+  ]
+}
