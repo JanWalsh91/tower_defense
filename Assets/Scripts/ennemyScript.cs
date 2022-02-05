@@ -1,7 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class ennemyScript : MonoBehaviour {
+
+	public static class Constants
+	{
+		public static string PlayerTag = "playerCore";
+		public static string EnemyTag = "EnemyStructure";
+	}
+
+	public enum Sides
+	{
+		Player = 0,
+		Enemy = 1
+	}
 
 	[HideInInspector]public GameObject nextCheckpoint;
 	[HideInInspector]public GameObject playerCore;
@@ -15,7 +28,9 @@ public class ennemyScript : MonoBehaviour {
 	public int value;									//Energie gagnee en tuant l'ennemi
 	public int ennemyDamage;				//Dommages lorsque l'ennemi touche le core
 	public float spawnRate;						//Vitesse de spawn en secondes
-	public int waveLenghtModifier;		//Modificateur de taille de vague en %
+	public int waveLenghtModifier;      //Modificateur de taille de vague en %
+
+	private Sides side;
 
 	//Initialisation de la classe
 	void Start() {
@@ -38,7 +53,7 @@ public class ennemyScript : MonoBehaviour {
 			destruction();
 		}
 		else if (transform.position == nextCheckpoint.transform.position) {
-			nextCheckpoint = nextCheckpoint.GetComponent<checkpoint>().nextCheckpoint;
+			CheckCloseDistance();
 		}
 	}
 
@@ -71,6 +86,54 @@ public class ennemyScript : MonoBehaviour {
 			Debug.Log ("Victoire !");
 			gameManager.gm.victory = true;
 			gameManager.gm.gameOver();
+		}
+	}
+
+	private void CheckCloseDistance()
+	{
+		string tag = GetSideTag();
+		
+		GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag(tag);
+
+        for (int i = 0; i < taggedObjects.Length; i++)
+        {
+            if (taggedObjects[i] == nextCheckpoint)
+            {
+				taggedObjects = taggedObjects.Where(item => item != taggedObjects[i]).ToArray();
+			}
+        }
+
+		float closestDistance = 0f;
+
+		foreach (var obj in taggedObjects)
+		{
+
+			float distance = Vector3.Distance(obj.transform.position, gameObject.transform.position);
+
+			if (distance < closestDistance || closestDistance == 0f)
+			{
+				closestDistance = distance;
+
+				nextCheckpoint = obj;
+			}
+		}
+
+	}
+
+	public void SetSide(Sides side)
+    {
+		this.side = side;
+    }
+
+	private string GetSideTag()
+	{
+		if (side == Sides.Player)
+		{
+			return Constants.EnemyTag;
+		}
+		else
+		{
+			return Constants.PlayerTag;
 		}
 	}
 }
