@@ -58,17 +58,25 @@ public class gameManager : MonoBehaviour {
 
 	//Le joueur perd de la vie
 	public void damagePlayer(int damage) {
-		playerHp -= damage;
+		/*playerHp -= damage;
 		if (playerHp <= 0)
 			gameOver();
 		else
-			Debug.Log ("Il reste au joueur " + playerHp + "hp");
+			Debug.Log ("Il reste au joueur " + playerHp + "hp");*/
 	}
 
 	//On pause le jeu en cas de game over
-	public void gameOver() {
+	public static void gameOver(ennemyScript.Sides side) {
 		Time.timeScale = 0;
 		Debug.Log ("Game Over");
-		onGameEnd(victory);
+        if (side == ennemyScript.Sides.Enemy)
+        {
+			Debug.Log("Player Win");
+        }
+        else
+        {
+			Debug.Log("Enemy Win");
+        }
+		//onGameEnd(victory);
 	}
 }
