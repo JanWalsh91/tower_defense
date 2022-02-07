@@ -68,5 +68,4 @@ public class ennemySpawner : MonoBehaviour {
 		playerCore = GameObject.FindGameObjectWithTag("playerCore");
 		pickType();
 	}
-
 }
