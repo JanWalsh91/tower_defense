@@ -52,7 +52,9 @@ public class EnemyPlayerManager : MonoBehaviour
 
             int areaToSpawn = Random.Range(0, rivalSpawnableTiles.Length);
 
-            Instantiate(minionTowers[towerToSpawn], rivalSpawnableTiles[areaToSpawn].transform.position, rivalSpawnableTiles[areaToSpawn].transform.rotation);
+            var tower = Instantiate(minionTowers[towerToSpawn], rivalSpawnableTiles[areaToSpawn].transform.position, rivalSpawnableTiles[areaToSpawn].transform.rotation);
+
+            tower.GetComponent<towerScript>().side = ennemyScript.Sides.Enemy;
 
             rivalSpawnableTiles = rivalSpawnableTiles.Where(tile => tile != rivalSpawnableTiles[areaToSpawn]).ToArray();
 
@@ -70,7 +72,9 @@ public class EnemyPlayerManager : MonoBehaviour
 
             int areaToSpawn = Random.Range(0, rivalSpawnableTiles.Length);
 
-            Instantiate(attackTowers[towerToSpawn], rivalSpawnableTiles[areaToSpawn].transform.position, rivalSpawnableTiles[areaToSpawn].transform.rotation);
+            var tower = Instantiate(attackTowers[towerToSpawn], rivalSpawnableTiles[areaToSpawn].transform.position, rivalSpawnableTiles[areaToSpawn].transform.rotation);
+
+            tower.GetComponent<towerScript>().side = ennemyScript.Sides.Enemy;
 
             rivalSpawnableTiles = rivalSpawnableTiles.Where(tile => tile != rivalSpawnableTiles[areaToSpawn]).ToArray();
 
