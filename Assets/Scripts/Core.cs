@@ -11,7 +11,7 @@ public class Core : MonoBehaviour
     public GameObject nextCore;
     private bool isCoreUpdateFinished;
     public bool isMainCore;
-
+    public GameObject[] Corespawnableareas;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,13 +35,21 @@ public class Core : MonoBehaviour
         {
             if (isMainCore)
             {
-                gameManager.gameOver(side);
+                if (side == ennemyScript.Sides.Enemy)
+                {
+                    gameManager.gameOver(side,true);
+                }
+                else
+                {
+                    gameManager.gameOver(side,false);
+                }
             }
             else
             {
                 UpdateMinionNextCore();
                 if (isCoreUpdateFinished)
                 {
+                    destroyspawnableareas();
                     isCoreUpdateFinished = false;
                     Destroy(gameObject);
                 }
@@ -96,5 +104,12 @@ public class Core : MonoBehaviour
         }
 
         return list;
+    }
+    private void destroyspawnableareas()
+    {
+        foreach (var area in Corespawnableareas)
+        {
+            Destroy(area);
+        }
     }
 }

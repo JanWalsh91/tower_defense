@@ -34,7 +34,7 @@ public class fireScript : MonoBehaviour {
 	public void Explode(Vector2 position) {
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(position, radius);
 		foreach (Collider2D collider in colliders) {
-			if (collider.gameObject.CompareTag("bot") || collider.gameObject.CompareTag("flybot") || collider.gameObject.CompareTag("boss")) {
+			if (collider.gameObject.CompareTag("EnemyMinion")){
 				Destroy(collider.gameObject);
 			}
 		}

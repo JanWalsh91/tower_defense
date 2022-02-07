@@ -19,17 +19,29 @@ public class UIBuyTower : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if (!towerPrefab) return;
-		towerScript tower = towerPrefab.GetComponent<towerScript>();
-		energy.text = tower.energy.ToString();
-		damage.text = tower.damage.ToString();
-		range.text = tower.range.ToString();
-		fireRate.text = tower.fireRate.ToString();
-		if (tower.type == towerScript.Type.canon) {
-			flyImage.sprite = noFly;
-		} else {
-			flyImage.sprite = fly;
-		}
-		towerImage.sprite = towerSprite;
+        MinionSpawnerTurret Minionspwnr = towerPrefab.GetComponent<MinionSpawnerTurret>();
+        if (Minionspwnr !=null)
+        {
+            towerImage.sprite = towerSprite;
+        }
+        else
+        {
+            towerScript tower = towerPrefab.GetComponent<towerScript>();
+            energy.text = tower.energy.ToString();
+            damage.text = tower.damage.ToString();
+            range.text = tower.range.ToString();
+            fireRate.text = tower.fireRate.ToString();
+            if (tower.type == towerScript.Type.canon)
+            {
+                flyImage.sprite = noFly;
+            }
+            else
+            {
+                flyImage.sprite = fly;
+            }
+            towerImage.sprite = towerSprite;
+        }
+		
 	}
 
 	void Update() {

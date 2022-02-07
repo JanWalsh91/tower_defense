@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour {
 		int currentScene = SceneManager.GetActiveScene().buildIndex;
 		if (victory) {
 			textVictoryStatus.text = "You win!";
-			textButtonText.text = "Next level";
+			textButtonText.text = " ";
 			int nextScene;
 			if (currentScene < SceneManager.sceneCountInBuildSettings - 1) {
 				nextScene = currentScene + 1;

@@ -8,14 +8,16 @@ public class EnemyPlayerManager : MonoBehaviour
     public GameObject[] rivalSpawnableTiles;
     public GameObject[] minionTowers;
     public GameObject[] attackTowers;
-
-    public float spawnMinionTowerRate = 3f;
+    public GameObject[] rivalMinionSpawnableTiles;
+    
+    public float spawnMinionTowerRate;
     private float nextSpanwMinionTower = 0f;
     private bool canSpawnMinionTower = false;
 
-    public float spawnAttackTowerRate = 5f;
+    public float spawnAttackTowerRate;
     private float nextSpawnAttackTower = 0f;
     private bool canSpawnAttackTower = false;
+    
     void Start()
     {
 
@@ -46,17 +48,17 @@ public class EnemyPlayerManager : MonoBehaviour
 
     void SpawnMinionTower()
     {
-        if (rivalSpawnableTiles.Length != 0)
+        if (rivalMinionSpawnableTiles.Length != 0)
         {
             int towerToSpawn = Random.Range(0, minionTowers.Length);
 
-            int areaToSpawn = Random.Range(0, rivalSpawnableTiles.Length);
+            int areaToSpawn = Random.Range(0, rivalMinionSpawnableTiles.Length);
 
-            var tower = Instantiate(minionTowers[towerToSpawn], rivalSpawnableTiles[areaToSpawn].transform.position, rivalSpawnableTiles[areaToSpawn].transform.rotation);
+           Instantiate(minionTowers[towerToSpawn], rivalMinionSpawnableTiles[areaToSpawn].transform.position, rivalMinionSpawnableTiles[areaToSpawn].transform.rotation);
 
-            tower.GetComponent<towerScript>().side = ennemyScript.Sides.Enemy;
+            //tower.GetComponent<towerScript>().side = ennemyScript.Sides.Enemy;
 
-            rivalSpawnableTiles = rivalSpawnableTiles.Where(tile => tile != rivalSpawnableTiles[areaToSpawn]).ToArray();
+            rivalMinionSpawnableTiles = rivalMinionSpawnableTiles.Where(tile => tile != rivalMinionSpawnableTiles[areaToSpawn]).ToArray();
 
             nextSpanwMinionTower = Time.time + spawnMinionTowerRate;
 
@@ -72,9 +74,9 @@ public class EnemyPlayerManager : MonoBehaviour
 
             int areaToSpawn = Random.Range(0, rivalSpawnableTiles.Length);
 
-            var tower = Instantiate(attackTowers[towerToSpawn], rivalSpawnableTiles[areaToSpawn].transform.position, rivalSpawnableTiles[areaToSpawn].transform.rotation);
+            Instantiate(attackTowers[towerToSpawn], rivalSpawnableTiles[areaToSpawn].transform.position, rivalSpawnableTiles[areaToSpawn].transform.rotation);
 
-            tower.GetComponent<towerScript>().side = ennemyScript.Sides.Enemy;
+            //tower.GetComponent<towerScript>().side = ennemyScript.Sides.Enemy;
 
             rivalSpawnableTiles = rivalSpawnableTiles.Where(tile => tile != rivalSpawnableTiles[areaToSpawn]).ToArray();
 

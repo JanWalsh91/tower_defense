@@ -8,7 +8,7 @@ public class Mainmenueditor : MonoBehaviour
     
     public void Startbutton()
     {
-        SceneManager.LoadScene("1");
+        SceneManager.LoadScene("scene002clashroyale");
     }
 
     public void Gameoptionsbutton()

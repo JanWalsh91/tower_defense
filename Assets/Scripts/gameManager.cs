@@ -66,17 +66,18 @@ public class gameManager : MonoBehaviour {
 	}
 
 	//On pause le jeu en cas de game over
-	public static void gameOver(ennemyScript.Sides side) {
+	public static void gameOver(ennemyScript.Sides side, bool victory) {
 		Time.timeScale = 0;
 		Debug.Log ("Game Over");
         if (side == ennemyScript.Sides.Enemy)
         {
 			Debug.Log("Player Win");
+            
         }
         else
         {
 			Debug.Log("Enemy Win");
         }
-		//onGameEnd(victory);
+		onGameEnd(victory);
 	}
 }
