@@ -9,11 +9,11 @@ public class EnemyPlayerManager : MonoBehaviour
     public GameObject[] minionTowers;
     public GameObject[] attackTowers;
 
-    private float spawnMinionTowerRate = 3f;
+    public float spawnMinionTowerRate = 3f;
     private float nextSpanwMinionTower = 0f;
     private bool canSpawnMinionTower = false;
 
-    private float spawnAttackTowerRate = 5f;
+    public float spawnAttackTowerRate = 5f;
     private float nextSpawnAttackTower = 0f;
     private bool canSpawnAttackTower = false;
     void Start()
