@@ -75,10 +75,38 @@ public class UIDragTower : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 		Vector3 vector = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		vector.z = -1;
 		RaycastHit2D hit = Physics2D.Raycast(vector, Vector2.zero);
-		if (hit && hit.collider.gameObject.CompareTag("empty")) {
-			tmpTower.transform.position = hit.collider.gameObject.transform.position;
-			hit.collider.gameObject.tag = "tile";
-			CreateTower(hit);
+		if (hit && hit.collider.gameObject.CompareTag("empty")) 
+		{
+			SpawnableArea area = ((GameObject)hit.collider.gameObject).GetComponent<SpawnableArea>();
+
+			if (area != null)
+            {
+                if (area.side == ennemyScript.Sides.Player)
+                {
+					if (!area.GetIsTowerPlaced())
+					{
+						tmpTower.transform.position = hit.collider.gameObject.transform.position;
+						hit.collider.gameObject.tag = "tile";
+						CreateTower(hit);
+					}
+                    else
+                    {
+						Debug.Log("Tower is placed to area");
+                    }
+				}
+                else
+                {
+					Debug.Log("Not Player Area");
+                }
+				
+			}
+            else
+            {
+				Debug.Log("Spawnable Area Not Found");
+            }
+         
+
+			
 		} else {
 			ReturnTower();
 		}
