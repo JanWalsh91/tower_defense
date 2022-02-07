@@ -61,7 +61,7 @@ public class UIDragTower : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 		float range = PanelBuyTower.GetComponent<UIBuyTower>().towerPrefab.GetComponent<towerScript>().range;
 		circle.transform.localScale *= range / (circle.GetComponent<SpriteRenderer>().bounds.size.y / 2);
 		SetDraggedPosition(data);
-		BuyTower();
+		
 
 	}
 
@@ -88,7 +88,8 @@ public class UIDragTower : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 						tmpTower.transform.position = hit.collider.gameObject.transform.position;
 						hit.collider.gameObject.tag = "tile";
 						CreateTower(hit);
-					}
+                        BuyTower();
+                    }
                     else
                     {
 						Debug.Log("Tower is placed to area");
