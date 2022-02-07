@@ -141,5 +141,6 @@ public class UIDragTower : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 	void CreateTower(RaycastHit2D hit) {
 		newTower = Instantiate(PanelBuyTower.GetComponent<UIBuyTower>().towerPrefab);
 		newTower.transform.position = hit.collider.gameObject.transform.position;
+		newTower.GetComponent<towerScript>().side = ennemyScript.Sides.Player;
 	}
 }

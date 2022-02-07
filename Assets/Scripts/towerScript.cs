@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class towerScript : MonoBehaviour {
 
+	public ennemyScript.Sides side;
+
 	private bool canFire = false;
 	private float nextShot = 0;
 	public enum Type{gatling, rocket, canon};
@@ -39,21 +41,40 @@ public class towerScript : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D bot) {
-		if (type == Type.canon && (bot.tag == "bot" || bot.tag == "boss"))
-			botsList.Add(bot.gameObject);
-		else if (type == Type.gatling && (bot.tag == "bot" || bot.tag == "flybot" || bot.tag == "boss"))
-			botsList.Add(bot.gameObject);
-		else if (type == Type.rocket && (bot.tag == "bot" || bot.tag == "flybot" || bot.tag == "boss"))
-			botsList.Add(bot.gameObject);
+        if (side == ennemyScript.Sides.Player)
+        {
+			if (bot.tag == "EnemyMinion")
+				botsList.Add(bot.gameObject);
+		}
+
+        else if (side == ennemyScript.Sides.Enemy)
+        {
+            if (true)
+            {
+
+				if (bot.tag == "PlayerMinion")
+					botsList.Add(bot.gameObject);
+			}
+        }
 	}
 
-	void OnTriggerExit2D(Collider2D bot) {
-		if (type == Type.canon && (bot.tag == "bot" || bot.tag == "boss"))
-			botsList.Remove(bot.gameObject);
-		else if (type == Type.gatling && (bot.tag == "bot" || bot.tag == "flybot" || bot.tag == "boss"))
-			botsList.Remove(bot.gameObject);
-		else if (type == Type.rocket && (bot.tag == "bot" || bot.tag == "flybot" || bot.tag == "boss"))
-			botsList.Remove(bot.gameObject);
+	void OnTriggerExit2D(Collider2D bot) 
+	{
+		if (side == ennemyScript.Sides.Player)
+		{
+			if (bot.tag == "EnemyMinion")
+				botsList.Remove(bot.gameObject);
+		}
+
+		else if (side == ennemyScript.Sides.Enemy)
+		{
+			if (true)
+			{
+
+				if (bot.tag == "PlayerMinion")
+					botsList.Remove(bot.gameObject);
+			}
+		}
 	}
 
 	void aim(GameObject bot) {
